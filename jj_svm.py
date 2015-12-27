@@ -68,7 +68,7 @@ if __name__ == '__main__':
                 train_X.append(avg_vector)
                 train_y.append(acts_map.index(act_str))
 				
-            print(acts_map)
+        print(acts_map)
 			
         '''svm 을 이용한 classfication '''
         X_train, X_test, y_train, y_test = train_test_split(train_X, train_y, test_size=0.1)
