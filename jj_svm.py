@@ -46,7 +46,6 @@ if __name__ == '__main__':
                     act_slot_val = str(dialog_act['act']) + str(dialog_act['slots'])
                     if act_slot_val not in acts_slot_val_list:
                         acts_slot_val_list.append(act_slot_val)
-                        print(act_slot_val)
 
                 acts_slot_val_list.sort()
                 act_str = '-'.join(acts_slot_val_list) #act가 여러개 일 경우 - 으로 연결하여 하나의 조합의로 처리하기 위함
@@ -68,7 +67,9 @@ if __name__ == '__main__':
 
                 train_X.append(avg_vector)
                 train_y.append(acts_map.index(act_str))
-
+				
+            print(acts_map)
+			
         '''svm 을 이용한 classfication '''
         X_train, X_test, y_train, y_test = train_test_split(train_X, train_y, test_size=0.1)
         clf = svm.SVC()
