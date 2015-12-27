@@ -45,7 +45,7 @@ nb_conv = 3
 if __name__ == '__main__':
 
     transcript = []  # 사용자의 대화 텍스트를 저장할 리스트
-    acts_map = []
+    acts_map = []
     train_X = []
     train_y = []
     max_word_len = 0

@@ -80,9 +80,16 @@ if __name__ == '__main__':
 
                 acts = []  # 한 턴에 act가 여러개인 경우를 처리하기 위한 리스트
 
+                # for dialog_act in dialog_acts:
+                    # if dialog_act['act'] not in acts:
+                        # acts.append(dialog_act['act'])
+						
                 for dialog_act in dialog_acts:
-                    if dialog_act['act'] not in acts:
-                        acts.append(dialog_act['act'])
+                    act_slot_vals = dialog_act['act'] + dialog_act['slots']
+                    if act_slot_vals not in acts:
+                    acts.append(act_slot_vals)
+                    print(act_slot_vals)
+					
 
                 acts.sort()
 
@@ -120,11 +127,6 @@ if __name__ == '__main__':
 
                 train_X.append(channel)
                 train_y.append(acts_map.index(act_str))
-
-                #!
-                print(acts_map.index(act_str))
-
-
 
                 # print(text_vectors.shape)
 
