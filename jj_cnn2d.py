@@ -36,7 +36,7 @@ batch_size = 16
 embedding_dims = 50
 nb_filters = 100
 hidden_dims = 100
-nb_epoch = 5
+nb_epoch = 100
 # size of pooling area for max pooling
 nb_pool = 2
 # convolution kernel size
@@ -78,22 +78,24 @@ if __name__ == '__main__':
                 ''' dialog act만 뽑아냄 '''
                 dialog_acts = jTurn.get('user').get('dialog-acts')
 
-                acts = []  # 한 턴에 act가 여러개인 경우를 처리하기 위한 리스트
+                #! act + slot + val 값 모두를 키로 함
+                acts_slot_val_list = []  # 한 턴에 act가 여러개인 경우를 처리하기 위한 리스트
 
                 # for dialog_act in dialog_acts:
                     # if dialog_act['act'] not in acts:
                         # acts.append(dialog_act['act'])
-						
+
+                #! act + slot + value 모두를 더한 문자열을 구성
                 for dialog_act in dialog_acts:
-                    act_slot_vals = str(dialog_act['act']) + str(dialog_act['slots'])
-                    if act_slot_vals not in acts:
-                        acts.append(act_slot_vals)
-                        print(act_slot_vals)
+                    act_slot_val = str(dialog_act['act']) + str(dialog_act['slots'])
+                    if act_slot_val not in acts_slot_val_list:
+                        acts_slot_val_list.append(act_slot_val)
+                        print(act_slot_val)
 					
 
-                acts.sort()
+                acts_slot_val_list.sort()
 
-                act_str = '-'.join(acts)
+                act_str = '-'.join(acts_slot_val_list)
 
                 if act_str not in acts_map:
                     acts_map.append(act_str)
@@ -184,6 +186,7 @@ if __name__ == '__main__':
     model.fit(X_train, y_train, batch_size=batch_size, nb_epoch=nb_epoch, show_accuracy=True, verbose=1,
               validation_data=(X_test, y_test))
 	
+    #! 스코어 계산
     score = model.evaluate(X_test, y_test, show_accuracy=True, verbose=0)
     print('Test score:', score[0])
     print('Test accuracy:', score[1])
