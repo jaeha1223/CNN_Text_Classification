@@ -85,7 +85,7 @@ if __name__ == '__main__':
                         # acts.append(dialog_act['act'])
 						
                 for dialog_act in dialog_acts:
-                    act_slot_vals = dialog_act['act'] + ' ' + dialog_act['slots']
+                    act_slot_vals = dialog_act['act'] + '+'.join(dialog_act['slots'])
                     if act_slot_vals not in acts:
                         acts.append(act_slot_vals)
                         print(act_slot_vals)
