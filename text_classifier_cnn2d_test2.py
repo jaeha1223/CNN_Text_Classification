@@ -90,7 +90,6 @@ if __name__ == '__main__':
 
                 if act_str not in acts_map:
                     acts_map.append(act_str)
-					print(act_str)
 
                 vector_items = ta.txt2vectors(text)  # 이 부분에서 text를 vector로 변환함
 
@@ -122,8 +121,8 @@ if __name__ == '__main__':
                 train_X.append(channel)
                 train_y.append(acts_map.index(act_str))
 
-				#!
-				print(acts_map.index(act_str))
+                #!
+                print(acts_map.index(act_str))
 
 
 
@@ -183,6 +182,6 @@ if __name__ == '__main__':
     model.fit(X_train, y_train, batch_size=batch_size, nb_epoch=nb_epoch, show_accuracy=True, verbose=1,
               validation_data=(X_test, y_test))
 	
-	score = model.evaluate(X_test, y_test, show_accuracy=True, verbose=0)
-	print('Test score:', score[0])
-	print('Test accuracy:', score[1])
+    score = model.evaluate(X_test, y_test, show_accuracy=True, verbose=0)
+    print('Test score:', score[0])
+    print('Test accuracy:', score[1])
