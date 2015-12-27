@@ -82,4 +82,4 @@ if __name__ == '__main__':
             if predict[i] == y_test[i]:
                 correct += 1
 
-        print('TEST : {0} / {1}, {2:.2f}%'.format(correct, total, correct / total * 100))
+        print('TEST : {0} / {1}, {2:.2f}%'.format(correct, total, float(correct) / float(total) * 100))
